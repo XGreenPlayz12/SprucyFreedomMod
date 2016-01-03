@@ -2,12 +2,14 @@ package me.StevenLawson.TotalFreedomMod;
 
 import me.StevenLawson.TotalFreedomMod.Config.TFM_ConfigEntry;
 import static me.StevenLawson.TotalFreedomMod.TFM_Util.DEVELOPERS;
+import static me.StevenLawson.TotalFreedomMod.TFM_Util.SFM_DEVELOPERS;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public enum TFM_PlayerRank {
-    DEVELOPER("a " + ChatColor.DARK_PURPLE + "Developer", ChatColor.DARK_PURPLE + "[Dev]"),
+    TFM_DEVELOPER("a " + ChatColor.DARK_PURPLE + "TotalFreedomMod Developer", ChatColor.DARK_PURPLE + "[TFM-Dev]"),
+    SFM_DEVELOPER("a " + ChatColor.DARK_PURPLE + "SprucyFreedomMod Developer", ChatColor.DARK_PURPLE + "[SFM-Dev]"),
     IMPOSTOR("an " + ChatColor.YELLOW + ChatColor.UNDERLINE + "Impostor", ChatColor.YELLOW.toString() + ChatColor.UNDERLINE + "[IMP]"),
     NON_OP("a " + ChatColor.GREEN + "Non-OP", ChatColor.GREEN.toString()),
     OP("an " + ChatColor.RED + "OP", ChatColor.RED + "[OP]"),
@@ -57,7 +59,11 @@ public enum TFM_PlayerRank {
         }
 
         if (DEVELOPERS.contains(sender.getName())) {
-            return DEVELOPER;
+            return TFM_DEVELOPER;
+        }
+        
+        if (SFM_DEVELOPERS.contains(sender.getName())) {
+            return SFM_DEVELOPER;
         }
 
         final TFM_Admin entry = TFM_AdminList.getEntryByIp(TFM_Util.getIp((Player) sender));
